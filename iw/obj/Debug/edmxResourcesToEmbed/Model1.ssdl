@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="plaka" Type="nvarchar" MaxLength="20" />
+    <Property Name="model" Type="nvarchar" MaxLength="50" />
+    <Property Name="picturePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="capacity" Type="nvarchar" MaxLength="50" />
+    <Property Name="engelli" Type="nchar" MaxLength="1" />
+    <Property Name="klima" Type="nchar" MaxLength="1" />
+    <Property Name="currentLocation" Type="geography" />
+    <Property Name="busLineName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="busDriverPassenger">
+    <Key>
+      <PropertyRef Name="busID" />
+      <PropertyRef Name="peopleID" />
+    </Key>
+    <Property Name="busID" Type="int" Nullable="false" />
+    <Property Name="peopleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="busLine">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="30" />
+    <Property Name="busLine" Type="geography" />
+    <Property Name="mapScreenPic" Type="nvarchar" MaxLength="500" />
+    <Property Name="createdDT" Type="datetime" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="busStop">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="90" />
+    <Property Name="picturePath" Type="nvarchar" MaxLength="50" />
+    <Property Name="location" Type="geography" />
+    <Property Name="chairTF" Type="nchar" MaxLength="1" />
+    <Property Name="bookTF" Type="nchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="parklar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="picURL1" Type="nvarchar" MaxLength="50" />
+    <Property Name="picURL2" Type="nvarchar" MaxLength="50" />
+    <Property Name="picURL3" Type="nvarchar" MaxLength="50" />
+    <Property Name="location" Type="geography" />
+  </EntityType>
+  <EntityType Name="people">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="10" />
+    <Property Name="lname" Type="nchar" MaxLength="30" />
+    <Property Name="address" Type="nchar" MaxLength="30" />
+    <Property Name="tel" Type="nchar" MaxLength="10" />
+    <Property Name="email" Type="nchar" MaxLength="10" />
+    <Property Name="department" Type="nchar" MaxLength="10" />
+    <Property Name="location" Type="geography" />
+    <Property Name="pathToSchool" Type="geography" />
+  </EntityType>
+  <EntityType Name="people111">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="10" />
+    <Property Name="lname" Type="nchar" MaxLength="10" />
+    <Property Name="address" Type="nchar" MaxLength="100" />
+    <Property Name="image" Type="image" />
+    <Property Name="image1" Type="nchar" MaxLength="100" />
+    <Property Name="image2" Type="varbinary" MaxLength="500" />
+    <Property Name="location" Type="geography" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_busDriverPassenger_bus">
+    <End Role="bus" Type="Self.bus" Multiplicity="1" />
+    <End Role="busDriverPassenger" Type="Self.busDriverPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="busDriverPassenger">
+        <PropertyRef Name="busID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_busDriverPassenger_people">
+    <End Role="people111" Type="Self.people111" Multiplicity="1" />
+    <End Role="busDriverPassenger" Type="Self.busDriverPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people111">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="busDriverPassenger">
+        <PropertyRef Name="peopleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_busDriverPassenger_people1">
+    <End Role="people" Type="Self.people" Multiplicity="1" />
+    <End Role="busDriverPassenger" Type="Self.busDriverPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="busDriverPassenger">
+        <PropertyRef Name="peopleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="bus" EntityType="Self.bus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="busDriverPassenger" EntityType="Self.busDriverPassenger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="busLine" EntityType="Self.busLine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="busStop" EntityType="Self.busStop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="parklar" EntityType="Self.parklar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="people111" EntityType="Self.people111" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_busDriverPassenger_bus" Association="Self.FK_busDriverPassenger_bus">
+      <End Role="bus" EntitySet="bus" />
+      <End Role="busDriverPassenger" EntitySet="busDriverPassenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_busDriverPassenger_people" Association="Self.FK_busDriverPassenger_people">
+      <End Role="people111" EntitySet="people111" />
+      <End Role="busDriverPassenger" EntitySet="busDriverPassenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_busDriverPassenger_people1" Association="Self.FK_busDriverPassenger_people1">
+      <End Role="people" EntitySet="people" />
+      <End Role="busDriverPassenger" EntitySet="busDriverPassenger" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

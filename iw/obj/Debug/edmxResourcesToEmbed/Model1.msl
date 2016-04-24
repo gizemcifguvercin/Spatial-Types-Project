@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="BLM376_DB_IIEntities">
+    <EntitySetMapping Name="buses">
+      <EntityTypeMapping TypeName="Model.bus">
+        <MappingFragment StoreEntitySet="bus">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="plaka" ColumnName="plaka" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="picturePath" ColumnName="picturePath" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="engelli" ColumnName="engelli" />
+          <ScalarProperty Name="klima" ColumnName="klima" />
+          <ScalarProperty Name="currentLocation" ColumnName="currentLocation" />
+          <ScalarProperty Name="busLineName" ColumnName="busLineName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="busDriverPassengers">
+      <EntityTypeMapping TypeName="Model.busDriverPassenger">
+        <MappingFragment StoreEntitySet="busDriverPassenger">
+          <ScalarProperty Name="busID" ColumnName="busID" />
+          <ScalarProperty Name="peopleID" ColumnName="peopleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="busLines">
+      <EntityTypeMapping TypeName="Model.busLine">
+        <MappingFragment StoreEntitySet="busLine">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="busLine1" ColumnName="busLine" />
+          <ScalarProperty Name="mapScreenPic" ColumnName="mapScreenPic" />
+          <ScalarProperty Name="createdDT" ColumnName="createdDT" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="busStops">
+      <EntityTypeMapping TypeName="Model.busStop">
+        <MappingFragment StoreEntitySet="busStop">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="picturePath" ColumnName="picturePath" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="chairTF" ColumnName="chairTF" />
+          <ScalarProperty Name="bookTF" ColumnName="bookTF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="parklars">
+      <EntityTypeMapping TypeName="Model.parklar">
+        <MappingFragment StoreEntitySet="parklar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="picURL1" ColumnName="picURL1" />
+          <ScalarProperty Name="picURL2" ColumnName="picURL2" />
+          <ScalarProperty Name="picURL3" ColumnName="picURL3" />
+          <ScalarProperty Name="location" ColumnName="location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="people">
+      <EntityTypeMapping TypeName="Model.person">
+        <MappingFragment StoreEntitySet="people">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="pathToSchool" ColumnName="pathToSchool" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="people111">
+      <EntityTypeMapping TypeName="Model.people111">
+        <MappingFragment StoreEntitySet="people111">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lname" ColumnName="lname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="image1" ColumnName="image1" />
+          <ScalarProperty Name="image2" ColumnName="image2" />
+          <ScalarProperty Name="location" ColumnName="location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

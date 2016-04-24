@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="plaka" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="picturePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="capacity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="engelli" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="klima" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="currentLocation" Type="Geography" />
+    <Property Name="busLineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="busDriverPassengers" Relationship="Self.FK_busDriverPassenger_bus" FromRole="bus" ToRole="busDriverPassenger" />
+  </EntityType>
+  <EntityType Name="busDriverPassenger">
+    <Key>
+      <PropertyRef Name="busID" />
+      <PropertyRef Name="peopleID" />
+    </Key>
+    <Property Name="busID" Type="Int32" Nullable="false" />
+    <Property Name="peopleID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="bus" Relationship="Self.FK_busDriverPassenger_bus" FromRole="busDriverPassenger" ToRole="bus" />
+    <NavigationProperty Name="people111" Relationship="Self.FK_busDriverPassenger_people" FromRole="busDriverPassenger" ToRole="people111" />
+    <NavigationProperty Name="person" Relationship="Self.FK_busDriverPassenger_people1" FromRole="busDriverPassenger" ToRole="people" />
+  </EntityType>
+  <EntityType Name="busLine">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="busLine1" Type="Geography" />
+    <Property Name="mapScreenPic" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="createdDT" Type="DateTime" Precision="3" />
+    <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="busStop">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+    <Property Name="picturePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="Geography" />
+    <Property Name="chairTF" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="bookTF" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="parklar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="picURL1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="picURL2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="picURL3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="Geography" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="lname" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="department" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="location" Type="Geography" />
+    <Property Name="pathToSchool" Type="Geography" />
+    <NavigationProperty Name="busDriverPassengers" Relationship="Self.FK_busDriverPassenger_people1" FromRole="people" ToRole="busDriverPassenger" />
+  </EntityType>
+  <EntityType Name="people111">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="lname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="image1" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="image2" Type="Binary" MaxLength="500" FixedLength="false" />
+    <Property Name="location" Type="Geography" />
+    <NavigationProperty Name="busDriverPassengers" Relationship="Self.FK_busDriverPassenger_people" FromRole="people111" ToRole="busDriverPassenger" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_busDriverPassenger_bus">
+    <End Role="bus" Type="Self.bus" Multiplicity="1" />
+    <End Role="busDriverPassenger" Type="Self.busDriverPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="busDriverPassenger">
+        <PropertyRef Name="busID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_busDriverPassenger_people">
+    <End Role="people111" Type="Self.people111" Multiplicity="1" />
+    <End Role="busDriverPassenger" Type="Self.busDriverPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people111">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="busDriverPassenger">
+        <PropertyRef Name="peopleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_busDriverPassenger_people1">
+    <End Role="people" Type="Self.person" Multiplicity="1" />
+    <End Role="busDriverPassenger" Type="Self.busDriverPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="busDriverPassenger">
+        <PropertyRef Name="peopleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BLM376_DB_IIEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="buses" EntityType="Self.bus" />
+    <EntitySet Name="busDriverPassengers" EntityType="Self.busDriverPassenger" />
+    <EntitySet Name="busLines" EntityType="Self.busLine" />
+    <EntitySet Name="busStops" EntityType="Self.busStop" />
+    <EntitySet Name="parklars" EntityType="Self.parklar" />
+    <EntitySet Name="people" EntityType="Self.person" />
+    <EntitySet Name="people111" EntityType="Self.people111" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_busDriverPassenger_bus" Association="Self.FK_busDriverPassenger_bus">
+      <End Role="bus" EntitySet="buses" />
+      <End Role="busDriverPassenger" EntitySet="busDriverPassengers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_busDriverPassenger_people" Association="Self.FK_busDriverPassenger_people">
+      <End Role="people111" EntitySet="people111" />
+      <End Role="busDriverPassenger" EntitySet="busDriverPassengers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_busDriverPassenger_people1" Association="Self.FK_busDriverPassenger_people1">
+      <End Role="people" EntitySet="people" />
+      <End Role="busDriverPassenger" EntitySet="busDriverPassengers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
